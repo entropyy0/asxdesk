@@ -3,34 +3,45 @@ import { allStocks, sectorList } from "@/lib/utils";
 import { newsArticles } from "@/lib/newsData";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://asxdesk.example.com";
+  const base = "https://asxdesk.com";
+  const now = new Date().toISOString();
 
-  const staticPages = ["", "/news", "/about", "/screener"].map((path) => ({
-    url: `${baseUrl}${path}`,
-    lastModified: new Date()
+  const staticPages: MetadataRoute.Sitemap = [
+    { url: base, lastModified: now, changeFrequency: "daily", priority: 1.0 },
+    { url: `${base}/screener`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${base}/news`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
+    { url: `${base}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.4 },
+  ];
+
+  const stockPages: MetadataRoute.Sitemap = allStocks.map((stock) => ({
+    url: `${base}/asx/${stock.ticker}`,
+    lastModified: now,
+    changeFrequency: "daily" as const,
+    priority: 0.9,
   }));
 
-  const stockPages = allStocks.map((stock) => ({
-    url: `${baseUrl}/asx/${stock.ticker}`,
-    lastModified: new Date()
+  const sectorPages: MetadataRoute.Sitemap = sectorList.map((sector) => ({
+    url: `${base}/sectors/${encodeURIComponent(sector.toLowerCase())}`,
+    lastModified: now,
+    changeFrequency: "weekly" as const,
+    priority: 0.7,
   }));
 
-  const sectorPages = sectorList.map((sector) => ({
-    url: `${baseUrl}/sectors/${encodeURIComponent(sector.toLowerCase())}`,
-    lastModified: new Date()
-  }));
-
-  const newsPages = newsArticles.map((article) => ({
-    url: `${baseUrl}/news/${article.slug}`,
-    lastModified: new Date(article.date)
+  const newsPages: MetadataRoute.Sitemap = newsArticles.map((article) => ({
+    url: `${base}/news/${article.slug}`,
+    lastModified: article.date,
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
   }));
 
   const comparePages: MetadataRoute.Sitemap = [];
-  for (let i = 0; i < allStocks.length; i += 1) {
-    for (let j = i + 1; j < allStocks.length; j += 1) {
+  for (let i = 0; i < allStocks.length; i++) {
+    for (let j = i + 1; j < allStocks.length; j++) {
       comparePages.push({
-        url: `${baseUrl}/compare/${allStocks[i].ticker}-vs-${allStocks[j].ticker}`,
-        lastModified: new Date()
+        url: `${base}/compare/${allStocks[i].ticker}-vs-${allStocks[j].ticker}`,
+        lastModified: now,
+        changeFrequency: "weekly" as const,
+        priority: 0.5,
       });
     }
   }
