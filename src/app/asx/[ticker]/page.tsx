@@ -6,7 +6,6 @@ import AnalysisSection from "@/components/AnalysisSection";
 import BrokerCTA from "@/components/BrokerCTA";
 import MetricsPanel from "@/components/MetricsPanel";
 import StockCard from "@/components/StockCard";
-import SEO from "@/components/SEO";
 import { buildStockDescription, buildStockTitle } from "@/lib/seo";
 import { allStocks, getStockByTicker, getStocksBySector } from "@/lib/utils";
 
@@ -54,22 +53,9 @@ export default function StockPage({ params }: StockPageProps) {
     (item) => item.ticker !== stock.ticker
   );
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: stock.faqs.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: item.answer
-      }
-    }))
-  };
-
   return (
     <div className="space-y-12">
-      <SEO jsonLd={faqJsonLd} id={`faq-${stock.ticker}`} />
+      <FAQSchema faqs={stock.faqs} />
       <section className="grid gap-8 lg:grid-cols-[1.6fr_0.8fr]">
         <div className="space-y-6">
           <div className="glass-card rounded-2xl p-6">

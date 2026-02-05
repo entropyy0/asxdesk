@@ -3,7 +3,7 @@ import StockCard from "@/components/StockCard";
 import NewsCard from "@/components/NewsCard";
 import { getFeaturedStocks, getTopPerformers } from "@/lib/utils";
 import { newsArticles } from "@/lib/newsData";
-import SEO from "@/components/SEO";
+import { OrganizationSchema } from "@/components/SEO";
 
 export default function HomePage() {
   const featured = getFeaturedStocks(["BHP", "CBA", "CSL", "MQG"]);
@@ -22,7 +22,7 @@ export default function HomePage() {
 
   return (
     <div className="space-y-16">
-      <SEO jsonLd={orgJsonLd} id="org-jsonld" />
+      <OrganizationSchema />
       <section className="relative overflow-hidden rounded-3xl bg-hero-gradient px-6 py-16 shadow-glass">
         <div className="absolute inset-0 opacity-40">
           <div className="absolute -left-20 top-10 h-40 w-40 rounded-full bg-blue-500/30 blur-3xl" />

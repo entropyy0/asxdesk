@@ -1,7 +1,7 @@
 export const dynamicParams = false;
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import SEO from "@/components/SEO";
+import { ArticleSchema } from "@/components/SEO";
 import { newsArticles } from "@/lib/newsData";
 import { buildNewsTitle } from "@/lib/seo";
 
@@ -53,7 +53,7 @@ export default function NewsDetailPage({ params }: NewsDetailProps) {
 
   return (
     <div className="space-y-10">
-      <SEO jsonLd={articleJsonLd} id={`article-${article.slug}`} />
+      <ArticleSchema title={article.title} date={article.date} description={article.excerpt} />
       <section className="glass-card rounded-2xl p-6">
         <p className="text-xs uppercase tracking-[0.3em] text-blue-300">
           {article.category}

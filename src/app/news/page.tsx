@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import NewsCard from "@/components/NewsCard";
-import SEO from "@/components/SEO";
+import { OrganizationSchema } from "@/components/SEO";
 import { newsArticles } from "@/lib/newsData";
 
 export const metadata: Metadata = {
@@ -23,7 +23,7 @@ export default function NewsPage() {
 
   return (
     <div className="space-y-10">
-      <SEO jsonLd={newsJsonLd} id="news-jsonld" />
+      <OrganizationSchema />
       <section className="glass-card rounded-2xl p-6">
         <p className="text-xs uppercase tracking-[0.3em] text-blue-300">News</p>
         <h1 className="mt-2 font-display text-3xl font-semibold">

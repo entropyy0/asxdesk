@@ -29,7 +29,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: siteMetadata.url
   },
-    verification: { google: "ADD_YOUR_GOOGLE_VERIFICATION_CODE_HERE" },
   openGraph: {
     title: siteMetadata.name,
     description: siteMetadata.description,
