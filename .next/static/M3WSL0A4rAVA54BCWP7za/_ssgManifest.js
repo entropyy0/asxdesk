@@ -1,0 +1,1 @@
+self.__SSG_MANIFEST=new Set(["\u002Fasx\u002F[ticker]","\u002Fcompare\u002F[ticker1]-vs-[ticker2]","\u002Fnews\u002F[slug]","\u002Fsectors\u002F[sector]"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
