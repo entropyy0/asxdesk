@@ -1,3 +1,4 @@
+export const dynamicParams = false;
 import type { Metadata } from "next";
 import StockCard from "@/components/StockCard";
 import { buildSectorDescription, buildSectorTitle } from "@/lib/seo";
