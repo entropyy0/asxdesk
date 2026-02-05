@@ -51,8 +51,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${plex.variable} ${space.variable}`}>
+      <head>
+        <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+      </head>
       <body className="min-h-screen bg-ink-900 text-slate-100">
-        <div className="grid-glow min-h-screen">
+        <div className="min-h-screen">
           <Header />
           <main className="mx-auto w-full max-w-6xl px-4 pb-20 pt-6 sm:px-6 lg:px-8">
             {children}

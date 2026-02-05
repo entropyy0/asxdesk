@@ -6,7 +6,7 @@ export default function StockCard({ stock }: { stock: Stock }) {
   return (
     <Link
       href={`/asx/${stock.ticker}`}
-      className="glass-card group rounded-2xl p-5 transition hover:-translate-y-1 hover:border-blue-500/40"
+      className="group rounded-2xl border border-white/10 bg-ink-900/80 p-5 transition hover:-translate-y-1 hover:border-blue-500/40"
     >
       <div className="flex items-center justify-between">
         <div>

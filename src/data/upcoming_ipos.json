@@ -1,0 +1,34 @@
+[
+  {
+    "company": "Barkly Rare Earths Limited",
+    "ticker": "BAK",
+    "expectedDate": "2026-01-30",
+    "offerPrice": "$0.20",
+    "industry": "Mineral exploration",
+    "status": "Upcoming"
+  },
+  {
+    "company": "Eastern Gas Corporation Limited",
+    "ticker": "EGA",
+    "expectedDate": "2026-02-10",
+    "offerPrice": "$0.20",
+    "industry": "Oil and gas",
+    "status": "Upcoming"
+  },
+  {
+    "company": "Macallum New Energy Limited",
+    "ticker": "MNE",
+    "expectedDate": "2026-02-13",
+    "offerPrice": "$0.20",
+    "industry": "Oil and gas exploration",
+    "status": "Upcoming"
+  },
+  {
+    "company": "MB Gold Limited",
+    "ticker": "MBG",
+    "expectedDate": "2026-02-06",
+    "offerPrice": "$0.20",
+    "industry": "Mining exploration",
+    "status": "Upcoming"
+  }
+]

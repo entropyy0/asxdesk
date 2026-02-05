@@ -3,10 +3,13 @@ export const dynamicParams = false;
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import AnalysisSection from "@/components/AnalysisSection";
-import BrokerCTA from "@/components/BrokerCTA";
+import AnnouncementsFeed from "@/components/AnnouncementsFeed";
 import MetricsPanel from "@/components/MetricsPanel";
+import PriceChart from "@/components/PriceChart";
+import SentimentBadge from "@/components/SentimentBadge";
 import StockCard from "@/components/StockCard";
 import { buildStockDescription, buildStockTitle } from "@/lib/seo";
+import { getSentiment, getAnnouncements } from "@/lib/scraperData";
 import { allStocks, getStockByTicker, getStocksBySector } from "@/lib/utils";
 
 export const revalidate = 3600;
@@ -29,12 +32,12 @@ export function generateMetadata({ params }: StockPageProps): Metadata {
     title,
     description,
     alternates: {
-      canonical: `https://asxdesk.example.com/asx/${stock.ticker}`
+      canonical: `https://asxdesk.com/asx/${stock.ticker}`
     },
     openGraph: {
       title,
       description,
-      url: `https://asxdesk.example.com/asx/${stock.ticker}`,
+      url: `https://asxdesk.com/asx/${stock.ticker}`,
       type: "article"
     },
     twitter: {
@@ -52,6 +55,9 @@ export default function StockPage({ params }: StockPageProps) {
   const related = getStocksBySector(stock.sector).filter(
     (item) => item.ticker !== stock.ticker
   );
+
+  const sentiment = getSentiment(stock.ticker);
+  const announcements = getAnnouncements(stock.ticker);
 
   return (
     <div className="space-y-12">
@@ -93,34 +99,31 @@ export default function StockPage({ params }: StockPageProps) {
               </span>
             </div>
           </div>
-          <div className="glass-card rounded-2xl p-6">
-            <h2 className="font-display text-xl font-semibold">
-              Price Chart (TradingView)
-            </h2>
-            <div className="mt-4 h-72 rounded-xl border border-dashed border-blue-500/30 bg-ink-900/40 p-6 text-sm text-slate-400">
-              Embed TradingView widget here for {stock.ticker}. The production
-              version should load live pricing and technical indicators.
-            </div>
-          </div>
+          <PriceChart ticker={stock.ticker} />
           <AnalysisSection stock={stock} />
-          <div className="glass-card rounded-2xl p-6">
-            <h3 className="font-display text-lg font-semibold">Recent Announcements</h3>
-            <div className="mt-4 space-y-3 text-sm text-slate-300">
-              <div className="rounded-xl border border-white/10 bg-ink-900/40 p-4">
-                <p className="font-semibold">Quarterly Activities Report</p>
-                <p className="text-xs text-slate-500">
-                  Highlights production updates, capital allocation priorities, and
-                  FY guidance commentary.
-                </p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-ink-900/40 p-4">
-                <p className="font-semibold">Investor Presentation</p>
-                <p className="text-xs text-slate-500">
-                  Strategic outlook with market positioning and growth pipeline.
-                </p>
+          {sentiment && <SentimentBadge sentiment={sentiment} />}
+          {announcements.length > 0 ? (
+            <AnnouncementsFeed announcements={announcements} />
+          ) : (
+            <div className="glass-card rounded-2xl p-6">
+              <h3 className="font-display text-lg font-semibold">Recent Announcements</h3>
+              <div className="mt-4 space-y-3 text-sm text-slate-300">
+                <div className="rounded-xl border border-white/10 bg-ink-900/40 p-4">
+                  <p className="font-semibold">Quarterly Activities Report</p>
+                  <p className="text-xs text-slate-500">
+                    Highlights production updates, capital allocation priorities, and
+                    FY guidance commentary.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-ink-900/40 p-4">
+                  <p className="font-semibold">Investor Presentation</p>
+                  <p className="text-xs text-slate-500">
+                    Strategic outlook with market positioning and growth pipeline.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
           <div className="glass-card rounded-2xl p-6">
             <h3 className="font-display text-lg font-semibold">FAQs</h3>
             <div className="mt-4 space-y-3 text-sm text-slate-300">
@@ -135,7 +138,6 @@ export default function StockPage({ params }: StockPageProps) {
         </div>
         <div className="space-y-6">
           <MetricsPanel stock={stock} />
-          <BrokerCTA />
           <div className="glass-card rounded-2xl p-6">
             <h3 className="font-display text-lg font-semibold">Related Stocks</h3>
             <div className="mt-4 space-y-4">

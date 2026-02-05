@@ -43,10 +43,31 @@ export default function Footer() {
           <div>
             <h4 className="mb-2 font-semibold text-slate-200">Sectors</h4>
             <ul className="space-y-2">
-              <li>Materials</li>
-              <li>Financials</li>
-              <li>Health Care</li>
-              <li>Information Tech</li>
+              <li>
+                <Link href="/sectors/materials" className="hover:text-white">
+                  Materials
+                </Link>
+              </li>
+              <li>
+                <Link href="/sectors/financials" className="hover:text-white">
+                  Financials
+                </Link>
+              </li>
+              <li>
+                <Link href="/sectors/health care" className="hover:text-white">
+                  Health Care
+                </Link>
+              </li>
+              <li>
+                <Link href="/sectors/information technology" className="hover:text-white">
+                  Information Tech
+                </Link>
+              </li>
+              <li>
+                <Link href="/sectors/energy" className="hover:text-white">
+                  Energy
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

@@ -34,11 +34,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
+  // Only include pre-built compare pages (top 10 popular tickers)
+  const popular = ["BHP", "CBA", "CSL", "FMG", "RIO", "NAB", "WBC", "ANZ", "MQG", "WDS"];
   const comparePages: MetadataRoute.Sitemap = [];
-  for (let i = 0; i < allStocks.length; i++) {
-    for (let j = i + 1; j < allStocks.length; j++) {
+  for (let i = 0; i < popular.length; i++) {
+    for (let j = i + 1; j < popular.length; j++) {
       comparePages.push({
-        url: `${base}/compare/${allStocks[i].ticker}-vs-${allStocks[j].ticker}`,
+        url: `${base}/compare/${popular[i]}-vs-${popular[j]}`,
         lastModified: now,
         changeFrequency: "weekly" as const,
         priority: 0.5,

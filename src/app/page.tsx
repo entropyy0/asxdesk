@@ -13,11 +13,11 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "ASX Desk",
-    url: "https://asxdesk.example.com",
+    url: "https://asxdesk.com",
     description:
-      "Australia&apos;s AI-powered ASX stock research platform delivering instant analysis and sector insights.",
-    sameAs: ["https://www.linkedin.com"],
-    logo: "https://asxdesk.example.com/logo.png"
+      "Australia's AI-powered ASX stock research platform delivering instant analysis and sector insights.",
+    sameAs: [],
+    logo: "https://asxdesk.com/logo.svg"
   };
 
   return (
@@ -48,7 +48,7 @@ export default function HomePage() {
               AI analysis updated daily
             </span>
             <span className="rounded-full border border-white/10 px-3 py-1">
-              Built for long-tail SEO
+              Free • No signup required
             </span>
           </div>
         </div>

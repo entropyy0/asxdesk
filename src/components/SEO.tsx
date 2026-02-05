@@ -4,7 +4,8 @@ export function OrganizationSchema() {
     "@type": "Organization",
     name: "ASX Desk",
     url: "https://asxdesk.com",
-    description: "Australia's AI-powered ASX stock research platform",
+    description: "Australia's AI-powered ASX stock research platform delivering instant analysis, sector insights, and screening tools.",
+    logo: "https://asxdesk.com/logo.svg",
     sameAs: [],
   };
   return (

@@ -18,6 +18,19 @@ export type Stock = {
   faqs: FAQItem[];
   performance1y: number;
   price: number;
+  recentAnnouncements?: string[];
+  keyMetrics?: {
+    dividendYield: string;
+    peRatio: string;
+    debtToEquity: string;
+  };
+  dailyChange?: number;
+  volume?: number;
+  high52?: number;
+  low52?: number;
+  peRatio?: number;
+  dividendYield?: number;
+  eps?: number;
 };
 
 export type NewsArticle = {
